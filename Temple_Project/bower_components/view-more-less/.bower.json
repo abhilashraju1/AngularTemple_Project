@@ -1,0 +1,34 @@
+{
+  "name": "view-more-less",
+  "description": "angularJS directive to add view less more functionality to any un-ordered list",
+  "main": "dist/view-more-less.js",
+  "authors": [
+    "echosteg.com"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "angularjs",
+    "directive",
+    "view",
+    "less",
+    "more"
+  ],
+  "homepage": "https://github.com/cynx/view-more-less",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "59b69de720",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "59b69de720df038ca3bc186383eacc7dc1ffb521"
+  },
+  "_source": "https://github.com/cynx/view-more-less.git",
+  "_target": "*",
+  "_originalSource": "angular-view-more-less",
+  "_direct": true
+}

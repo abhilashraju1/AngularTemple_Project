@@ -34,6 +34,7 @@
             }).success(function(data, status, headers, config) {
                 console.log(" claimTask success response !", data);
                 console.log("status !", status);
+                console.log("Commited");
                 $location.path("/sevaList" ); 
             });
     }

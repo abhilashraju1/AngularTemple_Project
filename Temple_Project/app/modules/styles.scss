@@ -1,0 +1,11 @@
+// Background color for tabs
+$navbar-default-link-active-bg: #cccccc;
+$fa-font-path: "../fonts/";
+$icon-font-path: "../fonts/";
+// bower:scss
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "../../bower_components/font-awesome/scss/font-awesome.scss";
+// endbower
+@import "login/login.scss";
+@import "employeeModule/employee.scss";
+@import "templeSevaModule/seva.scss"

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.unilog</groupId>
+		<artifactId>cimm2BusinessCentral</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.unilog.cimm2</groupId>
+	<artifactId>Cimm2-Workflow-PSS</artifactId>
+	<packaging>jar</packaging>
+	<name>Cimm2 Spring Workflow UI</name>
+	<url>http://www.unilogcorp.com</url>
+
+	<developers>
+		<developer>
+			<id>vinston</id>
+			<name>Vinston Sundara Pandiyan</name>
+			<email>vinston@unilogcorp.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>cp1250</project.build.sourceEncoding>
+		<frontend-maven-plugin.version>0.0.28</frontend-maven-plugin.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.github.eirslett</groupId>
+			<artifactId>frontend-maven-plugin</artifactId>
+			<version>${frontend-maven-plugin.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/dist</directory>
+			</resource>
+		</resources>
+		<directory>${project.basedir}/target</directory>
+		<outputDirectory>${project.build.directory}/classes/workflowui</outputDirectory>
+		<plugins>
+			<!-- <plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>${frontend-maven-plugin.version}</version>
+				<configuration>
+					<workingDirectory>${project.basedir}</workingDirectory>
+					<installDirectory>${project.basedir}</installDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v5.7.0</nodeVersion>
+							<npmVersion>3.10.5</npmVersion>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>bower install</id>
+						<goals>
+							<goal>bower</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>grunt build</id>
+						<goals>
+							<goal>grunt</goal>
+						</goals>
+						<configuration>
+							<arguments>build -/-force</arguments>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin> -->
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<verbose>true</verbose>
+					<fork>true</fork>
+					<compilerArguments>
+			            <d>${project.build.directory}/classes</d>
+			        </compilerArguments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<classesDirectory>${project.build.directory}/classes</classesDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-a-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+

@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+        <style> 
+		.st-sort-ascent:before{
+			content: '\25B2';
+		  }
+
+		  .st-sort-descent:before{
+			content: '\25BC';
+		  }
+		  body {
+			font-family: open-sans;
+			font-size: 14px;
+		}
+		</style>
+	</head>
+	<body ng-app="TestApp" ng-controller="testController">
+		<div class="container">
+			<h1>Employee Details</h1>
+			<div ng-show="loading"><h3>Loading...</h3></div>
+			<div class="row well">
+				<button type="button" class="btn btn-info pull-right" ng-click="addRecord()"><i class="glyphicon glyphicon-plus">
+								</i> Add New Employee</button>
+			</div>
+			<table st-table="tasks"  st-safe-src="tasks" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Employee Name</th>
+					<th>Team</th>
+					<th>Date</th>
+					<th>Address</th>
+					<th>Action</th>
+				</tr>
+				<tr>
+					<th colspan="5">
+                        <label class="col-xs-3 control-label" style="width:15%" for="tasks"></label>
+						<input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="detailsSearch.employeeName"/>
+					</th>
+                </tr>
+			</thead>
+			<tbody>
+				<tr class="paginationclass" st-select-row="task" st-select-mode="multiple" ng-repeat="task in tasks | filter :detailsSearch | pagination: currentPage * availablePageSize | limitTo: availablePageSize">
+					<td>{{task.employeeName}}</td>
+					<td>{{task.team}}</td>
+                    <td>{{task.date}}</td>
+                    <td>{{task.address}}</td>
+					<td>
+						<div class="btn-group" role="group" aria-label="...">
+						  <button type="button" class="btn btn-info" ng-click="viewRecord(task.id)"><i class="glyphicon glyphicon-search">
+								</i></button>
+						  <button type="button" class="btn btn-default" ng-click="editRecord(task.id)"><i class="glyphicon glyphicon-pencil">
+								</i></button>
+						  <button type="button" class="btn btn-danger" ng-click="deleteRecord(task.id)"><i class="glyphicon glyphicon-trash">
+								</i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+        </table>
+        <div class="pagination pagination-centered" ng-show="availableDatalists.length" style="margin-left: 400px !important;">
+                <ul class="pagination-controle pagination">
+                 <li>
+                  <button type="button" class="btn btn-primary" ng-disabled="currentPage == 0"
+                 ng-click="currentPage=currentPage-1"> &lt; PREV</button>
+                 </li>
+                 <li>
+                 <span>Page {{currentPage + 1}} of {{ numberOfAvailablePages() }}</span>
+                 </li>
+                 <li>
+                 <button type="button" class="btn btn-primary"
+                 ng-disabled="currentPage >= availableDatalists.length/availablePageSize - 1"
+                 ng-click="currentPage = currentPage+1">NEXT &gt;</button>
+                 </li>
+                </ul>
+        </div>      
+	</body>
+</html>

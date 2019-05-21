@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+        <style> 
+		.st-sort-ascent:before{
+			content: '\25B2';
+		  }
+
+		  .st-sort-descent:before{
+			content: '\25BC';
+		  }
+		  body {
+			font-family: open-sans;
+			font-size: 14px;
+		}
+		</style>
+	</head>
+	<body ng-app="TestApp" ng-controller="testController">
+		<div class="container">
+			<h1>List of Sevas</h1>
+            <div ng-show="loading"><h3>Loading...</h3></div>
+			<div class="row well">
+                    <button style="margin-left: 10px;" type="button" class="btn btn-info pull-right" ng-click="createSevaRecord()"><i class="glyphicon glyphicon-plus">
+                               </i> Create Seva Receipt</button>
+
+				    <button type="button" class="btn btn-info pull-right" ng-click="addSevaRecord()"><i class="glyphicon glyphicon-plus">
+								</i> Add New Seva</button>
+			</div>
+			<table st-table="seva"  st-safe-src="seva" class="table table-striped">
+			<thead>
+				<tr>
+					<th>SL.No.</th>
+					<th>Name of the Seva</th>
+                    <th>Price</th>
+                    <th>Action</th>
+				</tr>
+				<tr>
+					<th colspan="5">
+                        <label class="col-xs-3 control-label" style="width:15%" for="seva"></label>
+						<input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="detailsSearch.sevaName"/>
+					</th>
+                </tr>
+			</thead>
+			<tbody>
+				<tr class="paginationclass" st-select-row="seva" st-select-mode="multiple" ng-repeat="seva in seva | filter :detailsSearch | pagination: currentPage * availablePageSize | limitTo: availablePageSize">
+                    <td> {{$index + 1}}</td>
+                    <td>{{seva.sevaName}}</td>
+					<td>{{seva.price}}</td>
+					<td>
+						<div class="btn-group" role="group" aria-label="...">
+						  <button type="button" class="btn btn-info" ng-click="viewSevaRecord(seva.id)"><i class="glyphicon glyphicon-search">
+								</i></button>
+						  <button type="button" class="btn btn-default" ng-click="editSevaRecord(seva.id)"><i class="glyphicon glyphicon-pencil">
+								</i></button>
+						  <button type="button" class="btn btn-danger" ng-click="deleteSevaRecord(seva.id)"><i class="glyphicon glyphicon-trash">
+								</i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+        </table>
+        <div class="pagination pagination-centered" ng-show="availableDatalists.length" style="margin-left: 400px !important;">
+                <ul class="pagination-controle pagination">
+                 <li>
+                  <button type="button" class="btn btn-primary" ng-disabled="currentPage == 0"
+                 ng-click="currentPage=currentPage-1"> &lt; PREV</button>
+                 </li>
+                 <li>
+                 <span>Page {{currentPage + 1}} of {{ numberOfAvailablePages() }}</span>
+                 </li>
+                 <li>
+                 <button type="button" class="btn btn-primary"
+                 ng-disabled="currentPage >= availableDatalists.length/availablePageSize - 1"
+                 ng-click="currentPage = currentPage+1">NEXT &gt;</button>
+                 </li>
+                </ul>
+        </div>      
+	</body>
+</html>

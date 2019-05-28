@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+        <style> 
+		.st-sort-ascent:before{
+			content: '\25B2';
+		  }
+
+		  .st-sort-descent:before{
+			content: '\25BC';
+		  }
+		  body {
+			font-family: open-sans;
+			font-size: 14px;
+		}
+		</style>
+	</head>
+	<body ng-app="TestApp" ng-controller="testController">
+		<div class="container">
+			<h1>Users List</h1>
+            <div ng-show="loading"><h3>Loading...</h3></div>
+			<table st-table="user"  st-safe-src="user" class="table table-striped">
+			<thead>
+				<tr>
+					<th>SL.No.</th>
+					<th>User Name</th>
+          <th>Password</th>
+					<th>Email</th>
+					<th>Phone Number</th>
+				</tr>
+				<tr>
+					<th colspan="5">
+                        <label class="col-xs-3 control-label" style="width:15%" for="user"></label>
+						<input st-search placeholder="global search" class="input-sm form-control" type="search" ng-model="detailsSearch.userName"/>
+					</th>
+                </tr>
+			</thead>
+			<tbody>
+				<tr class="paginationclass" st-select-row="user" st-select-mode="multiple" ng-repeat="user in user | filter :detailsSearch | pagination: currentUserPage * availableUserPageSize | limitTo: availableUserPageSize">
+                    <td> {{$index + 1}}</td>
+                    <td>{{user.userName}}</td>
+										<td>{{user.password}}</td>
+										<td>{{user.email}}</td>
+										<td>{{user.phoneNumber}}</td>
+				<td>
+						<div class="btn-group" role="group" aria-label="...">
+									<button type="button" class="btn btn-default" ng-click="editUserRecord(user.id)"><i class="glyphicon glyphicon-pencil">
+											</i></button>
+									<button type="button" class="btn btn-danger" ng-click="deleteUserRecord(user.id)"><i class="glyphicon glyphicon-trash">
+											</i></button>
+							</div>
+					</td>
+				</tr>
+			</tbody>
+        </table>
+        <div class="pagination pagination-centered" ng-show="availableUserDatalists.length" style="margin-left: 400px !important;">
+                <ul class="pagination-controle pagination">
+                 <li>
+                  <button type="button" class="btn btn-primary" ng-disabled="currentUserPage == 0"
+                 ng-click="currentUserPage=currentUserPage-1"> &lt; PREV</button>
+                 </li>
+                 <li>
+                 <span>Page {{currentUserPage + 1}} of {{ numberOfAvailableUserPages() }}</span>
+                 </li>
+                 <li>
+                 <button type="button" class="btn btn-primary"
+                 ng-disabled="currentUserPage >= availableUserDatalists.length/availableUserPageSize - 1"
+                 ng-click="currentUserPage = currentUserPage+1">NEXT &gt;</button>
+                 </li>
+                </ul>
+        </div>      
+	</body>
+</html>

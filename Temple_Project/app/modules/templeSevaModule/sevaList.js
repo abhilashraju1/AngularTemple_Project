@@ -155,6 +155,10 @@ $scope.showAvailableData = function( ){
             
    }
 
+   $scope.userList = function(){
+        $location.path("/usersList" ); 
+    };
+
  $scope.cancelModal = function(){
     modalInstance.dismiss('cancel');
    }

@@ -47,6 +47,11 @@ var ConfigRoutes = function($stateProvider, $urlRouterProvider) {
             templateUrl: 'modules/templeSevaModule/sevaList.html',
             controller: 'SevaController'
         })
+        .state('usersList', {
+            url: '/usersList',
+            templateUrl: 'modules/usersModule/usersList.html',
+            controller: 'UserController'
+        })
 };
 
 angular.module('templeSevaUiApp').config(ConfigRoutes);

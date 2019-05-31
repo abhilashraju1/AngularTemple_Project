@@ -13,7 +13,8 @@ Run `grunt` for building and `grunt serve` for preview.
 
 Running `grunt test` will run the unit tests with karma.
 
-Please follow the below steps to set up / configure and build AngularJs UI Projects for Cimm2Touch
+## Steps to Configure or Build AngularJs UI Temple Project
+Please follow the below steps to set up / configure and build AngularJs UI Projects for Temple Application
 Install the following software utilities 
 NodeJs
 Git 
@@ -55,3 +56,7 @@ Steps: To include directive
 3. We will add directive name in bower.json
 4. We will include module in app.js
 5. We need to inject in controller.
+
+
+## Screen Shots
+

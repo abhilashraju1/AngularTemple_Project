@@ -48,7 +48,7 @@ these are npm tools which are used for different activities involved during the 
 npm install grunt
 grunt serve --force
 
-#TO RUN THE APPLICATION
+# TO RUN THE APPLICATION
 grunt clean serve --force
 
 Steps: To include directive
